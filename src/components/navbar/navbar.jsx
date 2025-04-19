@@ -32,162 +32,66 @@ const Navbar = () => {
       <LeftNavbar isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
 
       {/* Main Navbar */}
-      <div style={{
-        marginTop: '15px',
-        marginLeft: '15px',
-        marginRight: '15px',
-        marginBottom: '0px',
-        boxSizing: 'border-box',
-        zIndex: 50
-      }}>
-        <nav style={{ 
-          backgroundColor: '#064C50',
-          padding: '15px',
-          borderRadius: '15px',
-          width: '100%',
-          boxSizing: 'border-box'
-        }}>
-          <div style={{
-            maxWidth: '1200px',
-            margin: '0 auto',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: '1rem',
-            width: '100%'
-          }}>
+      <div className="mx-4 mt-4 mb-0 z-50">
+        <nav className="w-full bg-[#064C50] rounded-xl p-4">
+          <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
             {/* Left side */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flex: isMobile ? '0 0 auto' : '0 0 180px' }}>
+            <div className={`flex items-center gap-4 ${isMobile ? '' : 'w-[180px]'}`}>
               <button 
-                style={{ 
-                  color: 'white',
-                  background: 'none',
-                  border: 'none',
-                  cursor: 'pointer',
-                  padding: '5px'
-                }}
+                className="text-white hover:text-[#B9EB6F] transition-colors duration-200"
                 onClick={toggleMenu}
               >
                 <FontAwesomeIcon 
                   icon={faBars} 
-                  style={{ 
-                    fontSize: isMobile ? '20px' : '24px',
-                    transition: 'transform 0.3s ease'
-                  }} 
+                  className={`${isMobile ? 'text-xl' : 'text-2xl'} transition-transform duration-300`}
                 />
               </button>
               {!isMobile && (
                 <img 
                   src="/Deligrow.png" 
                   alt="Deligrow" 
-                  style={{ 
-                    height: '30px',
-                    width: 'auto',
-                    objectFit: 'contain'
-                  }}
+                  className="h-8 w-auto object-contain"
                 />
               )}
             </div>
 
             {/* Middle - Search */}
             {!isMobile && (
-              <div style={{ 
-                flex: '0 1 600px',
-                position: 'relative',
-                marginLeft: '-2rem'
-              }}>
+              <div className="flex-1 max-w-2xl relative -ml-8">
                 <input
                   type="text"
                   placeholder="Search for product..."
-                  style={{
-                    width: '100%',
-                    padding: '0.5rem 1rem',
-                    borderRadius: '9999px',
-                    border: 'none',
-                    outline: 'none'
-                  }}
+                  className="w-full py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-[#B9EB6F]"
                 />
-                <button style={{
-                  position: 'absolute',
-                  right: '6px',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  backgroundColor: '#B9EB6F',
-                  color: '#064C50',
-                  width: '32px',
-                  height: '32px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderRadius: '50%',
-                  border: 'none'
-                }}>
-                  <FontAwesomeIcon icon={faSearch} style={{ fontSize: '20px' }} />
+                <button className="absolute right-1.5 top-1/2 -translate-y-1/2 bg-[#B9EB6F] text-[#064C50] w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#a8d863] transition-colors duration-200">
+                  <FontAwesomeIcon icon={faSearch} className="text-lg" />
                 </button>
               </div>
             )}
 
             {/* Right side - Icons */}
-            <div style={{ 
-              display: 'flex', 
-              alignItems: 'center', 
-              gap: isMobile ? '1rem' : '1.5rem',
-              flex: '0 0 auto'
-            }}>
-              <div style={{ position: 'relative' }}>
+            <div className={`flex items-center ${isMobile ? 'gap-4' : 'gap-6'}`}>
+              <div className="relative">
                 <FontAwesomeIcon 
                   icon={faShoppingCart} 
-                  style={{ 
-                    color: 'white', 
-                    fontSize: isMobile ? '20px' : '24px' 
-                  }} 
+                  className={`text-white hover:text-[#B9EB6F] transition-colors duration-200 ${isMobile ? 'text-xl' : 'text-2xl'}`}
                 />
-                <span style={{
-                  position: 'absolute',
-                  top: '-8px',
-                  right: '-8px',
-                  backgroundColor: '#B9EB6F',
-                  color: '#064C50',
-                  width: isMobile ? '16px' : '18px',
-                  height: isMobile ? '16px' : '18px',
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: isMobile ? '10px' : '12px',
-                  fontWeight: 'bold'
-                }}>0</span>
+                <span className={`absolute -top-2 -right-2 bg-[#B9EB6F] text-[#064C50] ${isMobile ? 'w-4 h-4 text-xs' : 'w-5 h-5 text-sm'} rounded-full flex items-center justify-center font-bold`}>
+                  0
+                </span>
               </div>
-              <div style={{ position: 'relative' }}>
+              <div className="relative">
                 <FontAwesomeIcon 
                   icon={faHeart} 
-                  style={{ 
-                    color: 'white', 
-                    fontSize: isMobile ? '20px' : '24px' 
-                  }} 
+                  className={`text-white hover:text-[#B9EB6F] transition-colors duration-200 ${isMobile ? 'text-xl' : 'text-2xl'}`}
                 />
-                <span style={{
-                  position: 'absolute',
-                  top: '-8px',
-                  right: '-8px',
-                  backgroundColor: '#B9EB6F',
-                  color: '#064C50',
-                  width: isMobile ? '16px' : '18px',
-                  height: isMobile ? '16px' : '18px',
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: isMobile ? '10px' : '12px',
-                  fontWeight: 'bold'
-                }}>0</span>
+                <span className={`absolute -top-2 -right-2 bg-[#B9EB6F] text-[#064C50] ${isMobile ? 'w-4 h-4 text-xs' : 'w-5 h-5 text-sm'} rounded-full flex items-center justify-center font-bold`}>
+                  0
+                </span>
               </div>
               <FontAwesomeIcon 
                 icon={faUser} 
-                style={{ 
-                  color: 'white', 
-                  fontSize: isMobile ? '20px' : '24px' 
-                }} 
+                className={`text-white hover:text-[#B9EB6F] transition-colors duration-200 ${isMobile ? 'text-xl' : 'text-2xl'}`}
               />
             </div>
           </div>
