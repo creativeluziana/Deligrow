@@ -1,23 +1,12 @@
 import React, { useState } from 'react';
 import { Plus, Minus } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 
-const ItemCard = ({ id = "1", title, packSize, price, image }) => {
+const ItemCard = ({ title, packSize, price, image }) => {
   const [quantity, setQuantity] = useState(0);
-  const navigate = useNavigate();
 
-  const handleAdd = (e) => {
-    e.stopPropagation();
-    setQuantity(1);
-  };
-  
-  const handleIncrement = (e) => {
-    e.stopPropagation();
-    setQuantity(prev => prev + 1);
-  };
-  
-  const handleDecrement = (e) => {
-    e.stopPropagation();
+  const handleAdd = () => setQuantity(1);
+  const handleIncrement = () => setQuantity(prev => prev + 1);
+  const handleDecrement = () => {
     if (quantity === 1) {
       setQuantity(0);
     } else {
@@ -25,15 +14,8 @@ const ItemCard = ({ id = "1", title, packSize, price, image }) => {
     }
   };
 
-  const handleCardClick = () => {
-    navigate(`/product/${id}`);
-  };
-
   return (
-    <div 
-      onClick={handleCardClick}
-      className="bg-white rounded-xl sm:rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col cursor-pointer"
-    >
+    <div className="bg-white rounded-xl sm:rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col">
       {/* Image */}
       <div className="p-2 sm:p-4">
         <div className="aspect-[4/3] bg-[#E5E5E5] w-full rounded-lg sm:rounded-xl overflow-hidden">
@@ -49,7 +31,7 @@ const ItemCard = ({ id = "1", title, packSize, price, image }) => {
 
       {/* Content */}
       <div className="px-2 pb-2 sm:px-4 sm:pb-4 flex flex-col flex-1">
-        <h3 className="text-[#064C50] text-base sm:text-lg font-montserrat font-semibold text-center line-clamp-1 hover:text-[#064C50]/80">
+        <h3 className="text-[#064C50] text-base sm:text-lg font-montserrat font-semibold text-center line-clamp-1">
           {title}
         </h3>
         <p className="text-[#064C50]/70 text-xs sm:text-sm font-montserrat text-center mt-0.5 sm:mt-1">

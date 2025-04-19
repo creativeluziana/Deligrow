@@ -26,35 +26,30 @@ const YouMightLike = () => {
 
   const gourmetItems = [
     {
-      id: "gourmet-1",
       title: "Extra Virgin Olive Oil",
       packSize: "500ml bottle",
       price: "650.00",
-      image: "/categories/fruits.png"
+      image: "/products/olive-oil.png"
     },
     {
-      id: "gourmet-2",
       title: "Raw Forest Honey",
       packSize: "350g jar",
       price: "450.00",
-      image: "/categories/fruits.png"
+      image: "/products/honey.png"
     },
     {
-      id: "gourmet-3",
       title: "Organic Quinoa",
       packSize: "500g pack",
       price: "299.00",
       image: "/products/quinoa.png"
     },
     {
-      id: "gourmet-4",
       title: "Mixed Nuts & Seeds",
       packSize: "400g pack",
       price: "599.00",
       image: "/products/nuts.png"
     },
     {
-      id: "gourmet-5",
       title: "Green Tea Matcha",
       packSize: "100g tin",
       price: "599.00",
@@ -64,35 +59,30 @@ const YouMightLike = () => {
 
   const dailyEssentials = [
     {
-      id: "daily-1",
       title: "Free Range Eggs",
       packSize: "Pack of 6",
       price: "89.00",
       image: "/products/eggs.png"
     },
     {
-      id: "daily-2",
       title: "Organic Baby Spinach",
       packSize: "200g pack",
       price: "79.00",
       image: "/products/spinach.png"
     },
     {
-      id: "daily-3",
       title: "Greek Yogurt",
       packSize: "400g tub",
       price: "120.00",
       image: "/products/yogurt.png"
     },
     {
-      id: "daily-4",
       title: "Almond Milk",
       packSize: "1 Liter",
       price: "189.00",
       image: "/products/almond-milk.png"
     },
     {
-      id: "daily-5",
       title: "Fresh Avocados",
       packSize: "Pack of 3",
       price: "199.00",
@@ -120,9 +110,9 @@ const YouMightLike = () => {
           </div>
 
           <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-4">
-            {gourmetItems.slice(0, displayCount).map((item) => (
+            {gourmetItems.slice(0, displayCount).map((item, index) => (
               <ItemCard
-                key={item.id}
+                key={index}
                 {...item}
               />
             ))}
@@ -148,9 +138,9 @@ const YouMightLike = () => {
           </div>
 
           <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-4">
-            {dailyEssentials.slice(0, displayCount).map((item) => (
+            {dailyEssentials.slice(0, displayCount).map((item, index) => (
               <ItemCard
-                key={item.id}
+                key={index}
                 {...item}
               />
             ))}
