@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { X } from 'lucide-react';
 import {
   Home,
@@ -21,6 +22,7 @@ const LeftNavbar = ({ isMenuOpen, toggleMenu }) => {
   const [activeItem, setActiveItem] = useState('Home');
   const [expandedCategories, setExpandedCategories] = useState({});
   const [isCtaHovered, setIsCtaHovered] = useState(false);
+  const location = useLocation();
 
   const menuCategories = [
     {
@@ -28,11 +30,11 @@ const LeftNavbar = ({ isMenuOpen, toggleMenu }) => {
       emoji: '🛍️',
       color: '#2E7D32',
       items: [
-        { name: 'Home', icon: Home },
-        { name: 'The Pantry', icon: Store },
-        { name: 'Browse', icon: Compass },
-        { name: 'Smart Savings', icon: PiggyBank },
-        { name: 'My Basket', icon: ShoppingBasket },
+        { name: 'Home', icon: Home, path: '/' },
+        { name: 'The Pantry', icon: Store, path: '/pantry' },
+        { name: 'Browse', icon: Compass, path: '/browse' },
+        { name: 'Smart Savings', icon: PiggyBank, path: '/smart-savings' },
+        { name: 'My Basket', icon: ShoppingBasket, path: '/MyBasket' },
       ]
     },
     {
@@ -40,9 +42,9 @@ const LeftNavbar = ({ isMenuOpen, toggleMenu }) => {
       emoji: '✨',
       color: '#B7791F',
       items: [
-        { name: 'Join Deligrow+', icon: Crown },
-        { name: 'Track Order', icon: Truck },
-        { name: 'Blog', icon: Newspaper },
+        { name: 'Join Deligrow+', icon: Crown, path: '/deligrow-plus' },
+        { name: 'Track Order', icon: Truck, path: '/track-order' },
+        { name: 'Blog', icon: Newspaper, path: '/blog' },
       ]
     },
     {
@@ -50,9 +52,9 @@ const LeftNavbar = ({ isMenuOpen, toggleMenu }) => {
       emoji: 'ℹ️',
       color: '#4A5568',
       items: [
-        { name: 'About Deligrow', icon: Info },
-        { name: 'Help & Support', icon: HelpCircle },
-        { name: 'Careers', icon: Briefcase },
+        { name: 'About Deligrow', icon: Info, path: '/about' },
+        { name: 'Help & Support', icon: HelpCircle, path: '/help' },
+        { name: 'Careers', icon: Briefcase, path: '/careers' },
       ]
     }
   ];
@@ -62,6 +64,11 @@ const LeftNavbar = ({ isMenuOpen, toggleMenu }) => {
       ...prev,
       [categoryTitle]: !prev[categoryTitle]
     }));
+  };
+
+  // Function to check if a path is active
+  const isActivePath = (path) => {
+    return location.pathname === path;
   };
 
   return (
@@ -207,15 +214,15 @@ const LeftNavbar = ({ isMenuOpen, toggleMenu }) => {
                     transform: expandedCategories[category.title] ? 'translateY(0)' : 'translateY(-10px)'
                   }}>
                     {category.items.map((item, itemIndex) => (
-                      <a 
+                      <Link 
                         key={itemIndex}
-                        href="#"
-                        onClick={(e) => {
-                          e.preventDefault();
+                        to={item.path}
+                        onClick={() => {
                           setActiveItem(item.name);
+                          if (toggleMenu) toggleMenu();
                         }}
                         style={{
-                          color: activeItem === item.name ? category.color : '#555',
+                          color: isActivePath(item.path) ? category.color : '#555',
                           textDecoration: 'none',
                           fontSize: '15px',
                           fontWeight: '500',
@@ -226,29 +233,24 @@ const LeftNavbar = ({ isMenuOpen, toggleMenu }) => {
                           display: 'flex',
                           alignItems: 'center',
                           gap: '12px',
-                          backgroundColor: activeItem === item.name ? `${category.color}15` : 'transparent',
-                          border: activeItem === item.name ? `1px solid ${category.color}25` : '1px solid transparent',
+                          backgroundColor: isActivePath(item.path) ? `${category.color}15` : 'transparent',
+                          border: isActivePath(item.path) ? `1px solid ${category.color}25` : '1px solid transparent',
                           transform: expandedCategories[category.title] ? 'translateX(0)' : 'translateX(-10px)',
                           transitionDelay: `${itemIndex * 0.05}s`,
                           opacity: expandedCategories[category.title] ? 1 : 0,
-                          ':hover': {
-                            backgroundColor: `${category.color}08`,
-                            transform: 'translateX(4px)',
-                            boxShadow: `0 0 0 1px ${category.color}15`
-                          }
                         }}
                       >
                         <item.icon 
                           size={16}
                           style={{ 
                             width: '20px',
-                            color: activeItem === item.name ? category.color : '#666',
+                            color: isActivePath(item.path) ? category.color : '#666',
                             opacity: 0.9,
                             transition: 'all 0.2s ease'
                           }}
                         />
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
