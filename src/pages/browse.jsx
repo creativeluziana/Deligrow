@@ -1,134 +1,113 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Navbar from '../components/navbar/navbar';
 import Footer from '../components/footer';
+import { useNavigate } from 'react-router-dom';
 
 const Browse = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const categories = [
-    { id: 1, name: 'Fruits & Vegetables', count: 150 },
-    { id: 2, name: 'Dairy & Eggs', count: 89 },
-    { id: 3, name: 'Bread & Bakery', count: 45 },
-    { id: 4, name: 'Meat & Seafood', count: 78 },
-    { id: 5, name: 'Pantry Items', count: 200 },
-    { id: 6, name: 'Beverages', count: 120 },
-    { id: 7, name: 'Snacks', count: 180 },
-    { id: 8, name: 'Household', count: 95 },
+    {
+      name: 'All',
+      count: 16,
+      image: 'https://www.thespruceeats.com/thmb/B82cqHuzy2lCet8X7aG51cTi9jI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/pantry-master-list-1389303-hero-01-9ffad227ac094f91911d33c508686919.jpg',
+      description: 'Browse our complete collection of pantry items',
+      color: 'bg-green-50 text-green-700'
+    },
+    {
+      name: 'Premium',
+      count: 5,
+      image: 'https://contentgrid.homedepot-static.com/hdus/en_US/DTCCOMNEW/Articles/how-to-keep-pantry-items-fresh-2022-step-1.jpg',
+      description: 'High-quality premium pantry essentials',
+      color: 'bg-orange-50 text-orange-700'
+    },
+    {
+      name: 'Fresh',
+      count: 5,
+      image: 'https://content.jdmagicbox.com/comp/def_content/vegetable-vendors/shutterstock-130707287-vegetable-vendors-3-bils7.jpg',
+      description: 'Fresh and organic produce',
+      color: 'bg-orange-50 text-orange-700'
+    },
+    {
+      name: 'Grains',
+      count: 2,
+      image: 'https://content.jdmagicbox.com/quickquotes/images_main/truefarm-organic-mixed-food-grain-802587962-1t51rfgt.jpg?impolicy=queryparam&im=Resize=(360,360),aspect=fit',
+      description: 'Essential grains and cereals',
+      color: 'bg-gray-50 text-gray-700'
+    },
+    {
+      name: 'Condiments',
+      count: 1,
+      image: 'https://m.media-amazon.com/images/I/81gafi7PSBL.jpg',
+      description: 'Sauces and condiments',
+      color: 'bg-gray-50 text-gray-700'
+    },
+    {
+      name: 'Canned Goods',
+      count: 1,
+      image: 'https://www.thespruceeats.com/thmb/U_Jl4KSukouhfsmTyvpR0A8UGx8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/cannedfoodsWarren_Price-2d07bf3a98814f7b8f061e800a509627.jpg',
+      description: 'Long-lasting canned products',
+      color: 'bg-gray-50 text-gray-700'
+    },
+    {
+      name: 'Oils',
+      count: 1,
+      image: 'https://content.hy-vee.com/remote.axd/3f4c2184e060ce99111b-f8c0985c8cb63a71df5cb7fd729edcab.ssl.cf2.rackcdn.com/media/18025/cookingoils-hero.jpg?v=1&mode=crop&width=800&height=640&upscale=false',
+      description: 'Cooking oils and vinegars',
+      color: 'bg-gray-50 text-gray-700'
+    },
+    {
+      name: 'Baking',
+      count: 1,
+      image: 'https://www.fairtrade.org.uk/wp-content/uploads/2020/06/Baking-ingredients-resized-small-file-size.png',
+      description: 'Essential baking ingredients',
+      color: 'bg-gray-50 text-gray-700'
+    }
   ];
 
-  const products = [
-    {
-      id: 1,
-      name: 'Fresh Organic Bananas',
-      price: 2.99,
-      unit: 'dozen',
-      image: 'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=500&auto=format'
-    },
-    {
-      id: 2,
-      name: 'Whole Milk',
-      price: 3.49,
-      unit: 'gallon',
-      image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=500&auto=format'
-    },
-    {
-      id: 3,
-      name: 'Whole Wheat Bread',
-      price: 4.99,
-      unit: 'loaf',
-      image: 'https://images.unsplash.com/photo-1549931319-a545dcf3bc73?w=500&auto=format'
-    },
-    {
-      id: 4,
-      name: 'Fresh Eggs',
-      price: 5.99,
-      unit: 'dozen',
-      image: 'https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=500&auto=format'
-    },
-    {
-      id: 5,
-      name: 'Red Apples',
-      price: 1.99,
-      unit: 'lb',
-      image: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=500&auto=format'
-    },
-    {
-      id: 6,
-      name: 'Organic Honey',
-      price: 8.99,
-      unit: 'jar',
-      image: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=500&auto=format'
-    },
-  ];
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+  const handleCategoryClick = (category) => {
+    navigate(`/pantry?category=${category.name.toLowerCase()}`);
   };
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navbar toggleMenu={toggleMenu} />
+      <Navbar />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex flex-col md:flex-row gap-8">
-          {/* Categories Sidebar */}
-          <div className="w-full md:w-64 flex-shrink-0">
-            <div className="bg-white rounded-lg shadow-sm p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Categories</h2>
-              <div className="space-y-2">
-                {categories.map((category) => (
-                  <button
-                    key={category.id}
-                    className="w-full text-left px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors"
-                  >
-                    <span className="text-gray-700">{category.name}</span>
-                    <span className="text-gray-400 text-sm ml-2">({category.count})</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">Browse Categories</h1>
+          <p className="text-gray-600">
+            Explore our wide selection of pantry items by category
+          </p>
+        </div>
 
-          {/* Products Grid */}
-          <div className="flex-1">
-            <div className="mb-6 flex items-center justify-between">
-              <h1 className="text-2xl font-semibold text-gray-900">Browse Products</h1>
-              <div className="flex items-center gap-4">
-                <select className="rounded-lg border-gray-300 text-sm">
-                  <option>Sort by: Featured</option>
-                  <option>Price: Low to High</option>
-                  <option>Price: High to Low</option>
-                  <option>Name: A to Z</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {products.map((product) => (
-                <div key={product.id} className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                  <div className="aspect-w-16 aspect-h-9">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-48 object-cover"
-                    />
-                  </div>
-                  <div className="p-4">
-                    <h3 className="text-lg font-medium text-gray-900">{product.name}</h3>
-                    <div className="mt-2 flex items-center justify-between">
-                      <div>
-                        <span className="text-lg font-semibold text-green-600">${product.price}</span>
-                        <span className="text-sm text-gray-500 ml-1">/ {product.unit}</span>
-                      </div>
-                      <button className="bg-green-50 text-green-600 px-4 py-2 rounded-lg text-sm font-medium hover:bg-green-100 transition-colors">
-                        Add to Cart
-                      </button>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {categories.map((category) => (
+            <button
+              key={category.name}
+              onClick={() => handleCategoryClick(category)}
+              className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden group"
+            >
+              <div className="aspect-[4/3] relative overflow-hidden">
+                <img 
+                  src={category.image}
+                  alt={category.name}
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                  <div className="text-left">
+                    <div className="flex items-center justify-between w-full">
+                      <h3 className="text-white text-xl font-semibold">{category.name}</h3>
+                      <span className={`${category.color} px-2 py-1 rounded-full text-sm font-medium`}>
+                        {category.count}
+                      </span>
                     </div>
+                    <p className="text-white/80 text-sm mt-2">{category.description}</p>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
+              </div>
+            </button>
+          ))}
         </div>
       </div>
 
